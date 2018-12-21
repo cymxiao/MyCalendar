@@ -1,0 +1,18 @@
+Swipe Direction 
+Name              Value
+DIRECTION_NONE         1
+DIRECTION_LEFT         2
+DIRECTION_RIGHT        4
+DIRECTION_UP           8
+DIRECTION_DOWN         16
+DIRECTION_HORIZONTAL   6
+DIRECTION_VERTICAL     24
+DIRECTION_ALL          30
+
+npm i Hammer
+create gestures.service
+https://github.com/ionic-team/ionic/issues/14883
+import { BrowserModule,HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
+,
+    { provide: HAMMER_GESTURE_CONFIG, useClass: IonicGestureConfig }
+

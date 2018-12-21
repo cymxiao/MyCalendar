@@ -1,0 +1,48 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Add Event</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+<form (ngSubmit)="save()">
+  <ion-list>
+    <ion-item>
+      <ion-label floating>Title</ion-label>
+      <ion-input type="text" [(ngModel)]="event.title" name="event.title"></ion-input>
+    </ion-item>   
+    <ion-item>
+      <ion-label floating>Notes</ion-label>
+      <ion-input type="text" [(ngModel)]="event.message" name="event.message"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Start Date</ion-label>
+      <ion-datetime displayFormat="DD MMM YYYY" pickerFormat="DD/MM/YYYY" [(ngModel)]="event.startDate" name="event.startDate"></ion-datetime>
+    </ion-item>
+    <ion-item>
+    <ion-label floating>Start Time</ion-label>
+    <ion-datetime displayFormat="h:mm a" pickerFormat="h:m a" [(ngModel)]="event.startDate" name="event.startDate"></ion-datetime>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>End Date</ion-label>
+      <ion-datetime displayFormat="DD MMM YYYY" pickerFormat="DD/MM/YYYY" [(ngModel)]="event.endDate" name="event.endDate"></ion-datetime>
+    </ion-item> 
+      <ion-item>
+        <ion-label floating>End Time</ion-label>
+        <ion-datetime displayFormat="h:mm a" pickerFormat="h:m a" [(ngModel)]="event.endDate" name="event.endDate"></ion-datetime>
+      </ion-item>      
+        <ion-item>
+          <ion-label floating>All Day Event</ion-label>
+          <ion-toggle [(ngModel)]="event.isAllDay" name="event.isAllDay"></ion-toggle>
+        </ion-item>     
+        <ion-item>
+      <div style="margin-left:auto;margin-right: auto">
+      <ion-button type="submit"  fill="outline" color="primary" shape="round">Save</ion-button>
+      </div>
+    </ion-item>
+  </ion-list>
+</form>
+</ion-content>

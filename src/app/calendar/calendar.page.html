@@ -1,0 +1,76 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Calendar</ion-title>
+    <ion-buttons slot="end" (click)="addEvent()">
+      <ion-icon name="add-circle"></ion-icon>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <div (swipe)="swipeEvent($event)">
+    <div class="calendar-header">
+      <ion-row class="calendar-month">
+        <!-- <ion-col col-2 (click)="goToLastMonth()">
+        <ion-icon name="arrow-back"></ion-icon>
+      </ion-col>-->
+        <ion-col col-12>
+          <div style="text-align: center">{{currentMonth}} {{currentYear}}</div>
+        </ion-col>
+        <!-- <ion-col col-2 (click)="goToNextMonth()">
+        <ion-icon name="arrow-forward"></ion-icon>
+      </ion-col>-->
+      </ion-row>
+    </div>
+    <div class="calendar-body">
+      <ion-grid>
+        <ion-row class="calendar-weekday">
+          <ion-col>Su</ion-col>
+          <ion-col>Mo</ion-col>
+          <ion-col>Tu</ion-col>
+          <ion-col>We</ion-col>
+          <ion-col>Th</ion-col>
+          <ion-col>Fr</ion-col>
+          <ion-col>Sa</ion-col>
+        </ion-row>
+        <ion-row class="calendar-date">
+          <ion-col col-1 *ngFor="let lastDay of daysInLastMonth" class="last-month" (click)="goToLastMonth()">{{lastDay}}</ion-col>
+          <ion-col col-1 *ngFor="let day of daysInThisMonth" (click)="selectDate(day)">
+            <span class="currentDate" *ngIf="currentDate === day; else otherDate">{{day}}</span>
+            <ng-template #otherDate class="otherDate">
+              {{day}}<br>
+              <div class="event-bullet" *ngIf="checkEvent(day)"></div>
+            </ng-template>
+          </ion-col>
+          <ion-col col-1 *ngFor="let nextDay of daysInNextMonth" class="next-month" (click)="goToNextMonth()">{{nextDay}}</ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+    <div class="selected-event" *ngIf="isSelected">
+      <ion-list>
+        <ion-item *ngFor="let se of selectedEvent" (click)="eventClicked(se)">         
+          <ion-buttons slot="end" (click)="deleteEvent(se)">
+            <ion-icon name="trash"></ion-icon>
+          </ion-buttons>
+          <ion-grid>
+            <ion-row>
+              <ion-col col-12>               
+                <h2>{{se.title}}</h2>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col col-12>
+                <p>Start Date: {{se.startDate|date: "dd/MM/yyyy"}}<br>
+                  Start Time: {{se.startDate| date:"HH:mm"}}<br>
+                  End Time: {{se.endDate| date:"HH:mm"}}</p>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-item>
+      </ion-list>
+    </div>
+  </div>
+</ion-content>
